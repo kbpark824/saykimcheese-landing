@@ -1,0 +1,9 @@
+---
+const { src, alt, title } = Astro.props;
+---
+<figure class="group overflow-hidden rounded-lg shadow-md transition-all hover:shadow-xl hover:-translate-y-1">
+  <img src={src} alt={alt} loading="lazy" class="w-full h-72 object-cover" />
+  <figcaption class="p-4 bg-white">
+    <h3 class="font-serif text-xl font-semibold text-dark-text group-hover:text-primary transition-colors">{title}</h3>
+  </figcaption>
+</figure>

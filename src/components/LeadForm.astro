@@ -1,0 +1,20 @@
+---
+const action = "/api/lead";
+---
+<form action={action} method="post" class="grid gap-4 max-w-xl mx-auto">
+  <div class="grid sm:grid-cols-2 gap-4">
+    <input type="text" name="name" placeholder="Name" required class="border border-slate-300 p-3 rounded-md w-full focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" />
+    <input type="email" name="email" placeholder="Email" required class="border border-slate-300 p-3 rounded-md w-full focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" />
+  </div>
+  <div class="grid sm:grid-cols-2 gap-4">
+    <input type="tel" name="phone" placeholder="Phone" class="border border-slate-300 p-3 rounded-md w-full focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" />
+    <input type="date" name="event_date" class="border border-slate-300 p-3 rounded-md w-full focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" />
+  </div>
+  <textarea name="message" placeholder="Tell us about your event…" rows="4" class="border border-slate-300 p-3 rounded-md w-full focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"></textarea>
+
+  <!-- Honeypot - positioned off-screen for better bot detection -->
+  <input type="text" name="company" style="position: absolute; left: -9999px; top: -9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <button class="bg-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors w-full sm:w-auto sm:justify-self-center">Request a quote</button>
+  <p class="text-xs opacity-70 text-center">By submitting, you agree to be contacted about your event.</p>
+</form>

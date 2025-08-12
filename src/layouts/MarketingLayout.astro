@@ -1,0 +1,97 @@
+---
+// src/layouts/MarketingLayout.astro
+import "../styles/global.css";
+
+const {
+  title = "saykimcheese · NYC Charcuterie & Grazing Boards",
+  description = "Custom charcuterie & grazing boards for events across NYC.",
+  ogImage = "/images/og-cover.jpg",
+} = Astro.props;
+
+const plausibleDomain = import.meta.env.PLAUSIBLE_DOMAIN;
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "Caterer",
+  name: "saykimcheese",
+  url: "https://saykimcheese.com",
+  image: "https://saykimcheese.com/images/og-cover.jpg",
+  priceRange: "$$",
+  servesCuisine: ["Charcuterie", "Grazing Boards"],
+  areaServed: ["New York City"],
+  address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY" },
+  sameAs: ["https://www.instagram.com/saykim.cheese"],
+  contactPoint: [{ "@type": "ContactPoint", email: "skim@saykimcheese.com", contactType: "sales" }],
+};
+const ldJson = JSON.stringify(ld);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    {
+      plausibleDomain ? (
+        <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js"></script>
+      ) : null
+    }
+
+    <script type="application/ld+json">{ldJson}</script>
+  </head>
+  <body class="min-h-screen">
+    <header class="sticky top-0 bg-white backdrop-blur-md z-50 border-b border-slate-200 shadow-sm">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="text-3xl font-logo text-primary">saykimcheese</a>
+          <nav class="flex gap-6 text-sm items-center">
+            <a href="/#gallery" class="hover:text-primary transition-colors">Gallery</a>
+            <a
+              href="/#contact"
+              class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors"
+            >
+              Get a quote
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="bg-dark-text text-off-white mt-16">
+      <div class="mx-auto max-w-6xl px-4 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-logo text-2xl text-primary mb-2">saykimcheese</h3>
+            <p class="text-sm opacity-80">Hand-crafted grazing boards & tables for unforgettable events in NYC.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Connect</h4>
+            <div class="text-sm flex flex-col gap-1">
+              <a class="hover:text-primary" href="mailto:skim@saykimcheese.com">skim@saykimcheese.com</a>
+              <a class="hover:text-primary" href="https://instagram.com/saykim.cheese" target="_blank" rel="noopener">
+                Instagram
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Navigate</h4>
+            <div class="text-sm flex flex-col gap-1">
+              <a class="hover:text-primary" href="/#gallery">Our Boards</a>
+              <a class="hover:text-primary" href="/#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10 mt-8 pt-8 text-center text-xs opacity-70">
+          © {new Date().getFullYear()} saykimcheese · All Rights Reserved
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
