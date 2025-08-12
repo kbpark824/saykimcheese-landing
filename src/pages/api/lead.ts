@@ -2,8 +2,7 @@ import type { APIRoute } from "astro";
 import { z } from "zod";
 import { Resend } from "resend";
 
-// Note: For production deployment, you'll need to deploy this API route 
-// as a serverless function or add an appropriate Astro adapter
+export const prerender = false; // Ensure this runs as serverless function
 
 // Enhanced XSS protection function
 function sanitizeInput(input: string): string {
